@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tovarisch="clr-namespace:Wacton.Tovarisch.Converters">
+
+    <tovarisch:BoolToVisibilityConverter x:Key="BoolToNotCollapsedConverter" Hidden="False" Reverse="False"/>
+    <tovarisch:BoolToVisibilityConverter x:Key="BoolToNotHiddenConverter" Hidden="True" Reverse="False"/>
+    <tovarisch:BoolToVisibilityConverter x:Key="BoolToCollapsedConverter" Hidden="False" Reverse="True"/>
+    <tovarisch:BoolToVisibilityConverter x:Key="BoolToHiddenConverter" Hidden="True" Reverse="True"/>
+    <tovarisch:BoolToInverseConverter x:Key="BoolToInverseConverter" />
+    <tovarisch:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    <tovarisch:RelativeScaleConverter x:Key="RelativeScaleConverter"/>
+    
+</ResourceDictionary>

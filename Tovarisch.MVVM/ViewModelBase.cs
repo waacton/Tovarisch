@@ -7,7 +7,6 @@
         public ViewModelBase(CommandInvoker commandInvoker, params object[] models)
         {
             this.CommandInvoker = commandInvoker;
-
             foreach (var model in models)
             {
                 this.CommandInvoker.SubscribeToModelChange(model, this.UpdateForDomainModelChange);
@@ -19,7 +18,6 @@
         protected virtual void UpdateForDomainModelChange()
         {
             var properties = this.GetType().GetProperties();
-
             foreach (var property in properties)
             {
                 this.NotifyOfPropertyChange(property.Name);
