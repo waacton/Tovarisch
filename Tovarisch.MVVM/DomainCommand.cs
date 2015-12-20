@@ -33,10 +33,7 @@
 
         protected abstract void Execute(T parameter);
 
-        protected virtual string ToCommandString(T parameter)
-        {
-            return this.GetType().Name + ": " + parameter;
-        }
+        protected virtual string ToCommandString(T parameter) => this.GetType().Name + ": " + parameter;
     }
 
     public abstract class DomainCommand
@@ -72,9 +69,6 @@
             this.commandInvoker.NotifyListenersAbout(this.models);
         }
 
-        protected virtual string ToCommandString()
-        {
-            return this.GetType().Name;
-        }
+        protected virtual string ToCommandString() => this.GetType().Name;
     }
 }

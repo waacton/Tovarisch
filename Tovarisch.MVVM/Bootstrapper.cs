@@ -11,7 +11,7 @@
 
     public abstract class Bootstrapper<T> : BootstrapperBase
     {
-        protected IKernel Kernel;
+        private IKernel kernel;
 
         protected Bootstrapper()
         {
@@ -25,23 +25,23 @@
 
         protected override void Configure()
         {
-            this.Kernel = new StandardKernel();
+            this.kernel = new StandardKernel();
 
-            this.Kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
-            this.Kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
+            this.kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
+            this.kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
-            this.Kernel.Bind<CommandInvoker>().ToSelf().InSingletonScope();
+            this.kernel.Bind<CommandInvoker>().ToSelf().InSingletonScope();
 
-            this.ConfigureApplication();
+            this.ConfigureApplication(this.kernel);
         }
 
-        protected abstract void ConfigureApplication();
+        protected abstract void ConfigureApplication(IKernel kernel);
 
         protected override object GetInstance(Type service, string key)
         {
             if (service != null)
             {
-                return this.Kernel.Get(service);
+                return this.kernel.Get(service);
             }
 
             throw new ArgumentNullException(nameof(service));
@@ -49,12 +49,12 @@
 
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return this.Kernel.GetAll(service);
+            return this.kernel.GetAll(service);
         }
 
         protected override void BuildUp(object instance)
         {
-            this.Kernel.Inject(instance);
+            this.kernel.Inject(instance);
         }
 
         // the assemblies where Caliburn will look for convention-named Views and ViewModels

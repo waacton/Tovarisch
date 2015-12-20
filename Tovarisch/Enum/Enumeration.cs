@@ -7,33 +7,13 @@
 
     public abstract class Enumeration : IEquatable<Enumeration>
     {
-        private readonly int value;
-        private readonly string displayName;
+        public int Value { get; }
+        public string DisplayName { get; }
 
         protected Enumeration(int value, string displayName)
         {
-            this.value = value;
-            this.displayName = displayName;
-        }
-
-        public int Value
-        {
-            get { return this.value; }
-        }
-
-        public string DisplayName
-        {
-            get { return this.displayName; }
-        }
-
-        public bool Equals(Enumeration other)
-        {
-            return this.value.Equals(other.Value);
-        }
-
-        public override string ToString()
-        {
-            return this.DisplayName;
+            this.Value = value;
+            this.DisplayName = displayName;
         }
 
         public static IEnumerable<T> GetAll<T>() where T : Enumeration
@@ -52,14 +32,14 @@
             }
 
             var typeMatches = this.GetType().Equals(obj.GetType());
-            var valueMatches = this.value.Equals(otherValue.Value);
+            var valueMatches = this.Value.Equals(otherValue.Value);
 
             return typeMatches && valueMatches;
         }
 
         public override int GetHashCode()
         {
-            return this.value.GetHashCode();
+            return this.Value.GetHashCode();
         }
 
         public static T FromValue<T>(int value) where T : Enumeration, new()
@@ -86,5 +66,12 @@
 
             return matchingItem;
         }
+
+        public bool Equals(Enumeration other)
+        {
+            return this.Value.Equals(other.Value);
+        }
+
+        public override string ToString() => this.DisplayName;
     }
 }

@@ -27,7 +27,7 @@
             if (number >= 4) return "IV" + ToRomanNumerals(number - 4);
             if (number >= 1) return "I" + ToRomanNumerals(number - 1);
 
-            throw new InvalidOperationException(string.Format("Unable to convert {0} to roman numeral", number));
+            throw new InvalidOperationException($"Unable to convert {number} to roman numeral");
         }
     }
 }

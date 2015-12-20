@@ -39,7 +39,7 @@
         {
             if (targetFactor < 0 || targetFactor > 1)
             {
-                throw new ArgumentOutOfRangeException("targetFactor");
+                throw new ArgumentOutOfRangeException(nameof(targetFactor));
             }
 
             var alphaDifference = targetColor.A - baseColor.A;
@@ -80,7 +80,7 @@
         {
             if (weightedChannelValues == null || weightedChannelValues.Count <= 1)
             {
-                throw new ArgumentException("Cannot interpolate between one or fewer colour channels", "weightedChannelValues");
+                throw new ArgumentException("Cannot interpolate between one or fewer colour channels", nameof(weightedChannelValues));
             }
 
             // order color channel values so greatest channel value is first

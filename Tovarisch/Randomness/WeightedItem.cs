@@ -11,9 +11,6 @@
             this.Weight = weight;
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0}: {1}", this.Item, this.Weight);
-        }
+        public override string ToString() => $"{this.Item}: {this.Weight}";
     }
 }

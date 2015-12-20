@@ -65,7 +65,7 @@
         {
             if (successProbability < 0 || successProbability > 1)
             {
-                throw new ArgumentOutOfRangeException("successProbability", successProbability, "Success probability must be between 0 - 1");
+                throw new ArgumentOutOfRangeException(nameof(successProbability), successProbability, "Success probability must be between 0 - 1");
             }
 
             if (successProbability == 0.0)
