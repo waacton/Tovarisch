@@ -30,7 +30,7 @@
             this.kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             this.kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
-            this.kernel.Bind<CommandInvoker>().ToSelf().InSingletonScope();
+            this.kernel.Bind<ModelChanger>().ToSelf().InSingletonScope();
 
             this.ConfigureApplication(this.kernel);
         }

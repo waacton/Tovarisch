@@ -4,18 +4,18 @@
 
     public abstract class ViewModelBase : PropertyChangedBase
     {
-        public ViewModelBase(CommandInvoker commandInvoker, params object[] models)
+        protected ModelChanger ModelChanger { get; }
+
+        protected ViewModelBase(ModelChanger modelChanger, params object[] watchedModels)
         {
-            this.CommandInvoker = commandInvoker;
-            foreach (var model in models)
+            this.ModelChanger = modelChanger;
+            foreach (var watchedModel in watchedModels)
             {
-                this.CommandInvoker.SubscribeToModelChange(model, this.UpdateForDomainModelChange);
+                this.ModelChanger.SubscribeToModelChange(watchedModel, this.NotifyAllPropertyBindings);
             }
         }
 
-        protected CommandInvoker CommandInvoker { get; private set; }
-
-        protected virtual void UpdateForDomainModelChange()
+        protected virtual void NotifyAllPropertyBindings()
         {
             var properties = this.GetType().GetProperties();
             foreach (var property in properties)
@@ -27,8 +27,8 @@
 
     public abstract class ViewModelBase<T> : ViewModelBase
     {
-        protected ViewModelBase(CommandInvoker commandInvoker, T model)
-            : base(commandInvoker, model)
+        protected ViewModelBase(ModelChanger modelChanger, T watchedModel)
+            : base(modelChanger, watchedModel)
         {
         }
     }

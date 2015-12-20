@@ -5,36 +5,24 @@
 
     public class ModelChangeNotifier
     {
-        private readonly List<Listener> listeners = new List<Listener>();
+        private readonly List<ModelChangeSubscription> modelChangeSubscriptions = new List<ModelChangeSubscription>();
 
-        public void Notify(object changedObject)
+        public void Subscribe(object watchedModel, Action actionWhenChanged)
         {
-            foreach (var listener in this.listeners)
+            var modelChangeSubscription = new ModelChangeSubscription(new WeakReference(watchedModel), actionWhenChanged);
+            this.modelChangeSubscriptions.Add(modelChangeSubscription);
+        }
+
+        public void Notify(object changedModel)
+        {
+            foreach (var modelChangeSubscription in this.modelChangeSubscriptions)
             {
-                if (changedObject == listener.Reference.Target)
+                var watchedModel = modelChangeSubscription.Reference.Target;
+                if (changedModel == watchedModel)
                 {
-                    listener.Action();
+                    modelChangeSubscription.Action();
                 }
             }
         }
-
-        public void Subscribe(object objectToNotifyOn, Action actionOnChange)
-        {
-            this.listeners.Add(new Listener(new WeakReference(objectToNotifyOn), actionOnChange));
-        }
-    }
-
-    public class Listener
-    {
-        public WeakReference Reference { get; private set; }
-        public Action Action { get; private set; }
-
-        public Listener(WeakReference reference, Action action)
-        {
-            this.Reference = reference;
-            this.Action = action;
-        }
-
-        public override string ToString() => $"{this.Reference.Target} >>> {this.Action.Target} ~ {this.Action.Method}";
     }
 }
