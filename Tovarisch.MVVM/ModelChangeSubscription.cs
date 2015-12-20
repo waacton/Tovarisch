@@ -4,8 +4,8 @@
 
     public class ModelChangeSubscription
     {
-        public WeakReference Reference { get; private set; }
-        public Action Action { get; private set; }
+        public WeakReference Reference { get; }
+        public Action Action { get; }
 
         public ModelChangeSubscription(WeakReference reference, Action action)
         {
