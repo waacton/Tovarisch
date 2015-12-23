@@ -1,0 +1,26 @@
+﻿<Window x:Class="Wacton.Skeleton.UI.Mains.BasicShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:mains="clr-namespace:Wacton.Skeleton.UI.Mains"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="300" Width="600"
+        d:DataContext="{Binding Source={StaticResource DesignTimeViewModelLocator}, Path=ShellViewModel}">
+        <!-- d:DataContext provides design time data, as long as correct view model is specified -->
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- providse access to common resources and apply app-wide styles -->
+                <ResourceDictionary Source="pack://application:,,,/Wacton.Skeleton.UI;component/Styles/BasicBaseStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <mains:MainView DataContext="{Binding MainViewModel}"/>
+    </Grid>
+</Window>

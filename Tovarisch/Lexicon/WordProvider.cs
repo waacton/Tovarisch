@@ -8,7 +8,7 @@
     using Wacton.Tovarisch.Properties;
     using Wacton.Tovarisch.Randomness;
 
-    public class WordProvider
+    public class WordProvider : IWordProvider
     {
         private const int FirstDataIndex = 29;
         private const string NewLine = "\n";
@@ -31,6 +31,12 @@
             var wordCount = wordList.Count;
             var randomIndex = RandomNumberGenerator.IntegerBetween(0, wordCount);
             return wordList[randomIndex];
+        }
+
+        public string GetRandomWord()
+        {
+            var wordClass = RandomSelection.SelectOne(this.wordsByClass.Keys);
+            return this.GetRandomWord(wordClass);
         }
 
         // TODO: could do a one-off processing of the file to avoid this

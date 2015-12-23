@@ -27,9 +27,12 @@
         {
             this.kernel = new StandardKernel();
 
+            // bind caliburn objects
             this.kernel.Bind<IWindowManager>().To<WindowManager>().InSingletonScope();
             this.kernel.Bind<IEventAggregator>().To<EventAggregator>().InSingletonScope();
 
+            // bind tovarisch MVVM objects
+            this.kernel.Bind<ModelChangeNotifier>().ToSelf().InSingletonScope();
             this.kernel.Bind<ModelChanger>().ToSelf().InSingletonScope();
 
             this.ConfigureApplication(this.kernel);
@@ -57,7 +60,7 @@
             this.kernel.Inject(instance);
         }
 
-        // the assemblies where Caliburn will look for convention-named Views and ViewModels
+        // the assemblies where caliburn will look for convention-named Views and ViewModels
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
             return new[] { Assembly.GetExecutingAssembly(), typeof(T).Assembly };
