@@ -56,7 +56,7 @@
 
         private void UpdateCounterDetails()
         {
-            this.CounterDetails = $"Updated {this.counter} {(this.counter == 1 ? "time" : "times")}";
+            this.CounterDetails = $"updated {this.counter} {(this.counter == 1 ? "time" : "times")}";
         }
     }
 }
