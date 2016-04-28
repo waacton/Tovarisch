@@ -1,0 +1,10 @@
+WactonLog.tmLanguage --> C:\Users\<username>\AppData\Roaming\Sublime Text 3\Packages\User
+
+Syntax > WactonLog will be available for use
+
+To edit:
+* 	Install PackageDev to Sublime
+*	Put WactonLog.YAML-tmLanguage file in C:\Users\<username>\AppData\Roaming\Sublime Text 3\Packages\User
+*	Make sure Tools > Build System is set to automatic [alternatively, Tools > Build With... > Property List]
+*	Open WactonLog.YAML-tmLanguage, make changes, hit F7 to generate new .tmLanguage file
+*	Use Syntax > PackageDev > Sublime Text Syntax Def (YAML) for highlighting

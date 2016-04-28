@@ -16,7 +16,7 @@
             const string TestWord = "wactontest";
 
             // using moq to help testing without writing dummy classes
-            var mockWordProvider = new Mock<IWordProvider>();
+            var mockWordProvider = new Mock<IWordRepository>();
             mockWordProvider.Setup(provider => provider.GetRandomWord()).Returns(TestWord);
             var wordProvider = mockWordProvider.Object;
 

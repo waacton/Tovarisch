@@ -8,7 +8,7 @@
     using Wacton.Tovarisch.Properties;
     using Wacton.Tovarisch.Randomness;
 
-    public class WordProvider : IWordProvider
+    public class WordRepository : IWordRepository
     {
         private const int FirstDataIndex = 29;
         private const string NewLine = "\n";
@@ -16,7 +16,7 @@
 
         private readonly Dictionary<WordClass, List<string>> wordsByClass = new Dictionary<WordClass, List<string>>();
 
-        public WordProvider()
+        public WordRepository()
         {
             this.wordsByClass.Add(WordClass.Adjective, ParseResourceWordData(Resources.Adjectives));
             this.wordsByClass.Add(WordClass.Adverb, ParseResourceWordData(Resources.Adverbs));

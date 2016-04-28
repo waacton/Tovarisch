@@ -21,22 +21,7 @@
 
         public static string ToDelimitedString<T>(this IEnumerable<T> collection, string delimiter)
         {
-            var list = collection.ToList();
-            if (!list.Any())
-            {
-                return string.Empty;
-            }
-
-            var stringBuilder = new StringBuilder();
-            foreach (var item in list)
-            {
-                stringBuilder.Append(item);
-                stringBuilder.Append(delimiter);
-            }
-
-            // remove the trailing delimiter
-            stringBuilder.Remove(stringBuilder.Length - delimiter.Length, delimiter.Length);
-            return stringBuilder.ToString();
+            return string.Join(delimiter, collection);
         }
     }
 }

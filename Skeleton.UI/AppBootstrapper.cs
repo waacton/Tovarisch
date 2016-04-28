@@ -28,7 +28,7 @@
         /// </summary>
         public static void SetupKernelBindings(IKernel kernel)
         {
-            kernel.Bind<IWordProvider>().To<WordProvider>().InSingletonScope();
+            kernel.Bind<IWordRepository>().To<WordRepository>().InSingletonScope();
             kernel.Bind<Main>().ToSelf().InSingletonScope();
         }
 
@@ -39,7 +39,7 @@
         public static void SetupKernelBindingsForDesignTime(IKernel kernel)
         {
             SetupKernelBindings(kernel);
-            kernel.Rebind<IWordProvider>().To<DesignTimeWordProvider>().InSingletonScope();
+            kernel.Rebind<IWordRepository>().To<DesignTimeWordRepository>().InSingletonScope();
         }
     }
 }

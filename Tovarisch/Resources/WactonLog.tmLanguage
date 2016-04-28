@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>log</string>
+	</array>
+	<key>name</key>
+	<string>WactonLog</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>timestamp</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\])</string>
+			<key>name</key>
+			<string>comment</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (debug level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Debug)(\])(\s*\[.*Thread.*\]\s\:{2})?(.*)</string>
+			<key>name</key>
+			<string>entity.name.function</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (info level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Info)(\])(\s*\[.*Thread.*\]\s\:{2})?(.*)</string>
+			<key>name</key>
+			<string>support.constant</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (warn level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Warn)(\])(\s*\[.*Thread.*\]\s\:{2})?(.*)</string>
+			<key>name</key>
+			<string>constant.numeric</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (error level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Error)(\])(\s*\[.*Thread.*\]\s\:{2})?(.*)</string>
+			<key>name</key>
+			<string>keyword</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (fatal level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Fatal)(\])(\s*\[.*Thread.*\]\s\:{2})?(.*)</string>
+			<key>name</key>
+			<string>invalid.illegal</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>first exception lines</string>
+			<key>match</key>
+			<string>(.*[eE]xception\:.*)</string>
+			<key>name</key>
+			<string>variable.parameter</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>following exception lines</string>
+			<key>match</key>
+			<string>(\s{2}+at.*)</string>
+			<key>name</key>
+			<string>string</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>timestamp + severity (trace level)</string>
+			<key>match</key>
+			<string>(\[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d{4}\|)(Trace)(\])(\s*\[.*Thread.*\]\s\:{2})?</string>
+			<key>name</key>
+			<string>comment</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.log</string>
+	<key>uuid</key>
+	<string>618eff93-edd0-4560-ba5a-4df40c7b5f15</string>
+</dict>
+</plist>

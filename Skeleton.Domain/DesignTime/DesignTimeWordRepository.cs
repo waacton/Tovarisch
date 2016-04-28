@@ -6,7 +6,7 @@
     /// used to provide model data during design time of MainView.xaml
     /// (when hooked up correctly)
     /// </summary>
-    public class DesignTimeWordProvider : IWordProvider
+    public class DesignTimeWordRepository : IWordRepository
     {
         private const string DesignTimeWord = "wacton";
 

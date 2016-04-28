@@ -66,10 +66,12 @@
     <Compile Include="CSV\CsvWrite.cs" />
     <Compile Include="CSV\CsvRead.cs" />
     <Compile Include="Enum\Enumeration.cs" />
-    <Compile Include="Lexicon\IWordProvider.cs" />
+    <Compile Include="Lexicon\IWordRepository.cs" />
     <Compile Include="Lexicon\WordClass.cs" />
-    <Compile Include="Lexicon\WordProvider.cs" />
+    <Compile Include="Lexicon\WordRepository.cs" />
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LoggerConfiguration.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Numbers\RomanNumerals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -90,6 +92,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Resources\WactonLog.tmLanguage" />
+    <None Include="Resources\WactonLog.YAML-tmLanguage" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -111,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Resources\WactonLog Sublime Syntax Highlighting.txt" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

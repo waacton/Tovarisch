@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\UpdateModelCommand.cs" />
-    <Compile Include="DesignTime\DesignTimeWordProvider.cs" />
+    <Compile Include="DesignTime\DesignTimeWordRepository.cs" />
     <Compile Include="Mains\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

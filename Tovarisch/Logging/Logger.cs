@@ -1,104 +1,95 @@
 ﻿namespace Wacton.Tovarisch.Logging
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading;
 
     using NLog;
 
-    public class Logger
+    public static class Logger
     {
-        public static readonly Logger Default = new Logger(LogManager.GetLogger("DefaultLogger"));
-        private static readonly Dictionary<string, Logger> Loggers = new Dictionary<string, Logger>();
-
+        private static readonly NLog.Logger NLogger = LogManager.GetLogger("Logger");
         private const int FlushTimeoutMilliseconds = 1000;
 
-        private readonly NLog.Logger actualLogger;
-        private Logger(NLog.Logger actualLogger)
-        {
-            this.actualLogger = actualLogger;
-        }
+        public static LoggerConfiguration Configuration { get; } = new LoggerConfiguration();
 
-        public static Logger Get(string name)
+        static Logger()
         {
-            if (!Loggers.ContainsKey(name))
-            {
-                Loggers.Add(name, new Logger(LogManager.GetLogger(name)));
-            }
-
-            return Loggers[name];
+            Configuration
+                .AddDebuggerTarget(LogLevel.Trace)
+                .AddDefaultTraceFileTarget()
+                .AddDefaultErrorFileTarget();
         }
 
         /// <summary> Logs a trace-level message (trace is level 6, lowest level) </summary>
-        public void Trace(string message)
+        public static void Trace(string message)
         {
-            this.actualLogger.Trace(ThreadPrefix(message));
+            NLogger.Trace(ThreadPrefix(message));
         }
 
         /// <summary> Logs a trace-level exception (trace is level 6, lowest level) </summary>
-        public void Trace(Exception exception, string message)
+        public static void Trace(Exception exception, string message)
         {
-            this.actualLogger.Trace(exception, ThreadPrefix(message));
+            NLogger.Trace(exception, ThreadPrefix(message));
         }
 
         /// <summary> Logs a debug-level message (debug is level 5) </summary>
-        public void Debug(string message)
+        public static void Debug(string message)
         {
-            this.actualLogger.Debug(ThreadPrefix(message));
+            NLogger.Debug(ThreadPrefix(message));
         }
 
         /// <summary> Logs a debug-level exception (debug is level 5) </summary>
-        public void Debug(Exception exception, string message)
+        public static void Debug(Exception exception, string message)
         {
-            this.actualLogger.Debug(exception, ThreadPrefix(message));
+            NLogger.Debug(exception, ThreadPrefix(message));
         }
 
         /// <summary> Logs an info-level message (info is level 4) </summary>
-        public void Info(string message)
+        public static void Info(string message)
         {
-            this.actualLogger.Info(message);
+            NLogger.Info(ThreadPrefix(message));
         }
 
         /// <summary> Logs an info-level exception (info is level 4) </summary>
-        public void Info(Exception exception, string message)
+        public static void Info(Exception exception, string message)
         {
-            this.actualLogger.Info(exception, ThreadPrefix(message));
+            NLogger.Info(exception, ThreadPrefix(message));
         }
 
         /// <summary> Logs a warn-level message (warn is level 3) </summary>
-        public void Warn(string message)
+        public static void Warn(string message)
         {
-            this.actualLogger.Warn(message);
+            NLogger.Warn(ThreadPrefix(message));
         }
 
         /// <summary> Logs a warn-level exception (warn is level 3) </summary>
-        public void Warn(Exception exception, string message)
+        public static void Warn(Exception exception, string message)
         {
-            this.actualLogger.Warn(exception, ThreadPrefix(message));
+            NLogger.Warn(exception, ThreadPrefix(message));
         }
 
         /// <summary> Logs a error-level message (error is level 2) </summary>
-        public void Error(string message)
+        public static void Error(string message)
         {
-            this.actualLogger.Error(ThreadPrefix(message));
+            NLogger.Error(ThreadPrefix(message));
         }
 
         /// <summary> Logs an error-level exception (error is level 2) </summary>
-        public void Error(Exception exception, string message)
+        public static void Error(Exception exception, string message)
         {
-            this.actualLogger.Error(exception, ThreadPrefix(message));
+            NLogger.Error(exception, ThreadPrefix(message));
         }
 
         /// <summary> Logs a fatal-level message (fatal is level 1, highest level) </summary>
-        public void Fatal(string message)
+        public static void Fatal(string message)
         {
-            this.actualLogger.Fatal(ThreadPrefix(message));
+            NLogger.Fatal(ThreadPrefix(message));
         }
 
         /// <summary> Logs a fatal-level exception (fatal is level 1, highest level) </summary>
-        public void Fatal(Exception exception, string message)
+        public static void Fatal(Exception exception, string message)
         {
-            this.actualLogger.Fatal(exception, ThreadPrefix(message));
+            NLogger.Fatal(exception, ThreadPrefix(message));
         }
 
         /// <summary> Flush any pending log messages </summary>

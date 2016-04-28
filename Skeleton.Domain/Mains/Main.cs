@@ -4,16 +4,16 @@
 
     public class Main
     {
-        private readonly IWordProvider wordProvider;
+        private readonly IWordRepository wordRepository;
         public string Word { get; private set; }
 
         /// <summary>
         /// parameter will be handled by ninject 
         /// and interface ensures adaptable for design time and testing
         /// </summary>
-        public Main(IWordProvider wordProvider)
+        public Main(IWordRepository wordRepository)
         {
-            this.wordProvider = wordProvider;
+            this.wordRepository = wordRepository;
             this.Update();
         }
 
@@ -22,7 +22,7 @@
         /// </summary>
         public void Update()
         {
-            this.Word = this.wordProvider.GetRandomWord();
+            this.Word = this.wordRepository.GetRandomWord();
         }
     }
 }

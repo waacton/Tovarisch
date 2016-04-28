@@ -1,6 +1,6 @@
 ﻿namespace Wacton.Tovarisch.Lexicon
 {
-    public interface IWordProvider
+    public interface IWordRepository
     {
         string GetRandomWord(WordClass wordClass);
 
